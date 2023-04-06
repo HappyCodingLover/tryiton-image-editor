@@ -20,14 +20,14 @@ export const appRouter = router(
       )
       .mutation(async ({ input }) => {
         if (input.request !== "") {
-          let fileContents = JSON.parse(fs.readFileSync('src/images.json', "utf8"));
+          let fileContents = JSON.parse(fs.readFileSync('/images.json', "utf8"));
           const request = fileContents?.request ? fileContents.request : [];
           request.push(input);
           fileContents = {
             original: fileContents.original,
             request: request
           }
-          fs.writeFileSync('src/images.json', JSON.stringify(fileContents));
+          fs.writeFileSync('/images.json', JSON.stringify(fileContents));
           return true
         }
       }),
@@ -38,7 +38,7 @@ export const appRouter = router(
         }),
       )
       .query(({ input }) => {
-        const imgData = JSON.parse(fs.readFileSync("src/images.json", "utf8"));
+        const imgData = JSON.parse(fs.readFileSync("/images.json", "utf8"));
         return imgData
       })
   },
